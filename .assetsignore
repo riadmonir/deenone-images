@@ -1,0 +1,8 @@
+node_modules
+node_modules/**
+.git
+.git/**
+bun.lockb
+bun.lock
+package.json
+package-lock.json
