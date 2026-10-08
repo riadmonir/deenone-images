@@ -20,9 +20,5 @@ Static image and asset CDN repository for the **DeenOne** Islamic Android Applic
 ### 🌅 Salah Waqts (নামাজের ওয়াক্ত)
 - `salah_waqts/ic_waqt_fajr.png`, `ic_waqt_sunrise.png`, `ic_waqt_dhuhr.png`, `ic_waqt_asr.png`, `ic_waqt_maghrib.png`, `ic_waqt_isha.png`, `ic_waqt_jummah.png`
 
-### 🖼️ Gallery & Mosque
-- `gallery/gallery_opt_*.webp`
-- `mosque/img_mosque_silhouette_hd.png`, `img_mosque_realistic.webp`, `img_mosque_night_lights.webp`
-
 ### 🏷️ Branding
 - `branding/deenone_icon.webp`
