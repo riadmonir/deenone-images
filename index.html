@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DeenOne Asset CDN & Gallery</title>
+  <title>DeenOne Asset CDN & Media Hub</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
@@ -11,8 +11,11 @@
     :root {
       --bg: #0B1313;
       --card: #132222;
+      --card-hover: #192D2D;
       --border: #1C3333;
       --teal: #10B981;
+      --teal-dim: rgba(16, 185, 129, 0.12);
+      --gold: #F59E0B;
       --text: #F1F5F9;
       --text-muted: #94A3B8;
     }
@@ -24,7 +27,7 @@
       padding: 32px 16px;
       line-height: 1.6;
     }
-    .container { max-width: 1100px; margin: 0 auto; }
+    .container { max-width: 1200px; margin: 0 auto; }
     header {
       text-align: center;
       margin-bottom: 40px;
@@ -33,24 +36,84 @@
     }
     .badge {
       display: inline-block;
-      background: rgba(16, 185, 129, 0.15);
+      background: var(--teal-dim);
       color: var(--teal);
-      padding: 6px 14px;
+      padding: 6px 16px;
       border-radius: 999px;
       font-size: 13px;
       font-weight: 600;
       margin-bottom: 12px;
+      letter-spacing: 0.5px;
     }
-    h1 { font-size: 32px; font-weight: 700; margin-bottom: 8px; }
-    p.subtitle { color: var(--text-muted); font-size: 16px; }
-    .section { margin-bottom: 40px; }
-    .section h2 {
-      font-size: 20px;
+    h1 { font-size: 32px; font-weight: 700; margin-bottom: 8px; color: #FFFFFF; }
+    p.subtitle { color: var(--text-muted); font-size: 15px; }
+    
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+    .stat-pill {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .stat-pill span { color: var(--teal); font-weight: 600; }
+
+    .nav-tabs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+      scrollbar-width: none;
+    }
+    .nav-tab {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 8px 16px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 13.5px;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .nav-tab:hover {
+      background: var(--card-hover);
+      color: var(--text);
+      border-color: var(--teal);
+    }
+
+    .section { margin-bottom: 48px; scroll-margin-top: 24px; }
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-title {
+      font-size: 20px;
       color: var(--teal);
       display: flex;
       align-items: center;
       gap: 8px;
+      font-weight: 700;
+    }
+    .section-badge {
+      font-size: 12px;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 2px 10px;
+      border-radius: 999px;
+      color: var(--text-muted);
     }
     .grid {
       display: grid;
@@ -62,37 +125,69 @@
       border: 1px solid var(--border);
       border-radius: 12px;
       padding: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       text-align: center;
-      transition: transform 0.2s, border-color 0.2s;
+      transition: transform 0.2s, border-color 0.2s, background 0.2s;
     }
     .card:hover {
       transform: translateY(-4px);
       border-color: var(--teal);
+      background: var(--card-hover);
+    }
+    .card-img-wrap {
+      width: 100%;
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 10px;
     }
     .card img {
-      width: 100%;
-      height: 140px;
+      max-width: 100%;
+      max-height: 100%;
       object-fit: contain;
-      border-radius: 8px;
-      background: rgba(0,0,0,0.2);
     }
     .card .name {
-      margin-top: 8px;
-      font-size: 12.5px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+      word-break: break-word;
+    }
+    .card .path {
+      font-size: 11px;
       color: var(--text-muted);
       word-break: break-all;
+      margin-bottom: 8px;
+      font-family: monospace;
     }
-    .card a {
+    .card .btn-link {
+      margin-top: auto;
       display: inline-block;
-      margin-top: 6px;
+      width: 100%;
+      padding: 6px 0;
+      background: var(--teal-dim);
       color: var(--teal);
       text-decoration: none;
       font-size: 12px;
       font-weight: 600;
+      border-radius: 6px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .card .btn-link:hover {
+      background: var(--teal);
+      color: #000;
     }
     footer {
       text-align: center;
       margin-top: 60px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
       color: var(--text-muted);
       font-size: 14px;
     }
@@ -103,62 +198,961 @@
     <header>
       <span class="badge">DeenOne Official CDN</span>
       <h1>দ্বীনওয়ান মিডিয়া ও এসেট রিপোজিটরি</h1>
-      <p class="subtitle">Cloudflare Global Edge Network দ্বারা দ্রুতগতির ইমেজ সিডিএন</p>
+      <p class="subtitle">Cloudflare Global Edge CDN দ্বারা আল্ট্রা-ফাস্ট ইসলামিক মিডিয়া নেটওয়ার্ক</p>
+      
+      <div class="stats">
+        <div class="stat-pill">🕋 হজ জার্নি: <span>12</span></div>
+        <div class="stat-pill">🕌 নামাজ শিক্ষা (পুরুষ): <span>11</span></div>
+        <div class="stat-pill">🧕 নামাজ শিক্ষা (মহিলা): <span>10</span></div>
+        <div class="stat-pill">🕋 হজের বিষয়ভিত্তিক: <span>31</span></div>
+        <div class="stat-pill">🌅 ওয়াক্ত আইকন: <span>7</span></div>
+        <div class="stat-pill">🖼️ গ্যালারি: <span>22</span></div>
+      </div>
     </header>
 
-    <div class="section">
-      <h2>🕋 হজ যাত্রা (Hajj Journey Stages)</h2>
-      <div class="grid" id="hajj-grid"></div>
+    <div class="nav-tabs">
+      <a href="#female-salah" class="nav-tab">🧕 মহিলাদের নামাজ (10)</a>
+      <a href="#male-salah" class="nav-tab">🕌 পুরুষদের নামাজ (11)</a>
+      <a href="#hajj-journey" class="nav-tab">🕋 হজ যাত্রা (12)</a>
+      <a href="#hajj-topics" class="nav-tab">🕋 হজের বিষয়সমূহ (31)</a>
+      <a href="#salah-waqts" class="nav-tab">🌅 নামাজের ওয়াক্ত (7)</a>
+      <a href="#mosque-gallery" class="nav-tab">🖼️ গ্যালারি ও মসজিদ (25)</a>
     </div>
 
-    <div class="section">
-      <h2>🕌 সালাহ ও নামাজ শিক্ষা (Salah Learning Steps)</h2>
-      <div class="grid" id="salah-grid"></div>
+    <!-- 1. FEMALE SALAH (মহিলাদের নামাজ শিক্ষা) -->
+    <div class="section" id="female-salah">
+      <div class="section-header">
+        <h2 class="section-title">🧕 মহিলাদের নামাজ শিক্ষা (Women's Salah Steps)</h2>
+        <span class="section-badge">10 টি ছবি</span>
+      </div>
+      <div class="grid">
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./namaz_learning/female/img_salah_female_step_1.jpg" alt="Female Step 1" loading="lazy" />
+            </div>
+            <div class="name">Female Step 1</div>
+            <div class="path">namaz_learning/female/img_salah_female_step_1.jpg</div>
+            <a href="./namaz_learning/female/img_salah_female_step_1.jpg" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./namaz_learning/female/img_salah_female_step_2.jpg" alt="Female Step 2" loading="lazy" />
+            </div>
+            <div class="name">Female Step 2</div>
+            <div class="path">namaz_learning/female/img_salah_female_step_2.jpg</div>
+            <a href="./namaz_learning/female/img_salah_female_step_2.jpg" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./namaz_learning/female/img_salah_female_step_3.jpg" alt="Female Step 3" loading="lazy" />
+            </div>
+            <div class="name">Female Step 3</div>
+            <div class="path">namaz_learning/female/img_salah_female_step_3.jpg</div>
+            <a href="./namaz_learning/female/img_salah_female_step_3.jpg" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./namaz_learning/female/img_salah_female_step_4.jpg" alt="Female Step 4" loading="lazy" />
+            </div>
+            <div class="name">Female Step 4</div>
+            <div class="path">namaz_learning/female/img_salah_female_step_4.jpg</div>
+            <a href="./namaz_learning/female/img_salah_female_step_4.jpg" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./namaz_learning/female/img_salah_female_step_5.jpg" alt="Female Step 5" loading="lazy" />
+            </div>
+            <div class="name">Female Step 5</div>
+            <div class="path">namaz_learning/female/img_salah_female_step_5.jpg</div>
+            <a href="./namaz_learning/female/img_salah_female_step_5.jpg" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./namaz_learning/female/img_salah_female_step_6.jpg" alt="Female Step 6" loading="lazy" />
+            </div>
+            <div class="name">Female Step 6</div>
+            <div class="path">namaz_learning/female/img_salah_female_step_6.jpg</div>
+            <a href="./namaz_learning/female/img_salah_female_step_6.jpg" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./namaz_learning/female/img_salah_female_step_7.jpg" alt="Female Step 7" loading="lazy" />
+            </div>
+            <div class="name">Female Step 7</div>
+            <div class="path">namaz_learning/female/img_salah_female_step_7.jpg</div>
+            <a href="./namaz_learning/female/img_salah_female_step_7.jpg" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./namaz_learning/female/img_salah_female_step_8.jpg" alt="Female Step 8" loading="lazy" />
+            </div>
+            <div class="name">Female Step 8</div>
+            <div class="path">namaz_learning/female/img_salah_female_step_8.jpg</div>
+            <a href="./namaz_learning/female/img_salah_female_step_8.jpg" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./namaz_learning/female/img_salah_female_step_9.jpg" alt="Female Step 9" loading="lazy" />
+            </div>
+            <div class="name">Female Step 9</div>
+            <div class="path">namaz_learning/female/img_salah_female_step_9.jpg</div>
+            <a href="./namaz_learning/female/img_salah_female_step_9.jpg" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./namaz_learning/female/img_salah_female_step_10.jpg" alt="Female Step 10" loading="lazy" />
+            </div>
+            <div class="name">Female Step 10</div>
+            <div class="path">namaz_learning/female/img_salah_female_step_10.jpg</div>
+            <a href="./namaz_learning/female/img_salah_female_step_10.jpg" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+      </div>
     </div>
 
-    <div class="section">
-      <h2>🕋 হজের বিষয়ভিত্তিক আইকনসমূহ (Hajj Topic Icons)</h2>
-      <div class="grid" id="topics-grid"></div>
+    <!-- 2. MALE SALAH (পুরুষদের নামাজ শিক্ষা) -->
+    <div class="section" id="male-salah">
+      <div class="section-header">
+        <h2 class="section-title">🕌 পুরুষদের নামাজ শিক্ষা (Men's Salah Steps)</h2>
+        <span class="section-badge">11 টি ছবি</span>
+      </div>
+      <div class="grid">
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./namaz_learning/male/img_salah_male_step_1.jpg" alt="Male Step 1" loading="lazy" />
+            </div>
+            <div class="name">Male Step 1</div>
+            <div class="path">namaz_learning/male/img_salah_male_step_1.jpg</div>
+            <a href="./namaz_learning/male/img_salah_male_step_1.jpg" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./namaz_learning/male/img_salah_male_step_2.jpg" alt="Male Step 2" loading="lazy" />
+            </div>
+            <div class="name">Male Step 2</div>
+            <div class="path">namaz_learning/male/img_salah_male_step_2.jpg</div>
+            <a href="./namaz_learning/male/img_salah_male_step_2.jpg" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./namaz_learning/male/img_salah_male_step_3.jpg" alt="Male Step 3" loading="lazy" />
+            </div>
+            <div class="name">Male Step 3</div>
+            <div class="path">namaz_learning/male/img_salah_male_step_3.jpg</div>
+            <a href="./namaz_learning/male/img_salah_male_step_3.jpg" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./namaz_learning/male/img_salah_male_step_4.jpg" alt="Male Step 4" loading="lazy" />
+            </div>
+            <div class="name">Male Step 4</div>
+            <div class="path">namaz_learning/male/img_salah_male_step_4.jpg</div>
+            <a href="./namaz_learning/male/img_salah_male_step_4.jpg" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./namaz_learning/male/img_salah_male_step_5.jpg" alt="Male Step 5" loading="lazy" />
+            </div>
+            <div class="name">Male Step 5</div>
+            <div class="path">namaz_learning/male/img_salah_male_step_5.jpg</div>
+            <a href="./namaz_learning/male/img_salah_male_step_5.jpg" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./namaz_learning/male/img_salah_male_step_6.jpg" alt="Male Step 6" loading="lazy" />
+            </div>
+            <div class="name">Male Step 6</div>
+            <div class="path">namaz_learning/male/img_salah_male_step_6.jpg</div>
+            <a href="./namaz_learning/male/img_salah_male_step_6.jpg" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./namaz_learning/male/img_salah_male_step_7.jpg" alt="Male Step 7" loading="lazy" />
+            </div>
+            <div class="name">Male Step 7</div>
+            <div class="path">namaz_learning/male/img_salah_male_step_7.jpg</div>
+            <a href="./namaz_learning/male/img_salah_male_step_7.jpg" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./namaz_learning/male/img_salah_male_step_8.jpg" alt="Male Step 8" loading="lazy" />
+            </div>
+            <div class="name">Male Step 8</div>
+            <div class="path">namaz_learning/male/img_salah_male_step_8.jpg</div>
+            <a href="./namaz_learning/male/img_salah_male_step_8.jpg" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./namaz_learning/male/img_salah_male_step_9.jpg" alt="Male Step 9" loading="lazy" />
+            </div>
+            <div class="name">Male Step 9</div>
+            <div class="path">namaz_learning/male/img_salah_male_step_9.jpg</div>
+            <a href="./namaz_learning/male/img_salah_male_step_9.jpg" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./namaz_learning/male/img_salah_male_step_10.jpg" alt="Male Step 10" loading="lazy" />
+            </div>
+            <div class="name">Male Step 10</div>
+            <div class="path">namaz_learning/male/img_salah_male_step_10.jpg</div>
+            <a href="./namaz_learning/male/img_salah_male_step_10.jpg" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./namaz_learning/male/img_salah_male_step_11.jpg" alt="Male Step 11" loading="lazy" />
+            </div>
+            <div class="name">Male Step 11</div>
+            <div class="path">namaz_learning/male/img_salah_male_step_11.jpg</div>
+            <a href="./namaz_learning/male/img_salah_male_step_11.jpg" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+      </div>
+    </div>
+
+    <!-- 3. HAJJ JOURNEY (হজ যাত্রা ধাপসমূহ) -->
+    <div class="section" id="hajj-journey">
+      <div class="section-header">
+        <h2 class="section-title">🕋 হজ যাত্রা (Hajj Journey Stages)</h2>
+        <span class="section-badge">12 টি ছবি</span>
+      </div>
+      <div class="grid">
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./hajj_journey/img_hajj_journey_stage_1.png" alt="Stage 1" loading="lazy" />
+            </div>
+            <div class="name">Stage 1</div>
+            <div class="path">hajj_journey/img_hajj_journey_stage_1.png</div>
+            <a href="./hajj_journey/img_hajj_journey_stage_1.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./hajj_journey/img_hajj_journey_stage_2.png" alt="Stage 2" loading="lazy" />
+            </div>
+            <div class="name">Stage 2</div>
+            <div class="path">hajj_journey/img_hajj_journey_stage_2.png</div>
+            <a href="./hajj_journey/img_hajj_journey_stage_2.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./hajj_journey/img_hajj_journey_stage_3.png" alt="Stage 3" loading="lazy" />
+            </div>
+            <div class="name">Stage 3</div>
+            <div class="path">hajj_journey/img_hajj_journey_stage_3.png</div>
+            <a href="./hajj_journey/img_hajj_journey_stage_3.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./hajj_journey/img_hajj_journey_stage_4.png" alt="Stage 4" loading="lazy" />
+            </div>
+            <div class="name">Stage 4</div>
+            <div class="path">hajj_journey/img_hajj_journey_stage_4.png</div>
+            <a href="./hajj_journey/img_hajj_journey_stage_4.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./hajj_journey/img_hajj_journey_stage_5.png" alt="Stage 5" loading="lazy" />
+            </div>
+            <div class="name">Stage 5</div>
+            <div class="path">hajj_journey/img_hajj_journey_stage_5.png</div>
+            <a href="./hajj_journey/img_hajj_journey_stage_5.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./hajj_journey/img_hajj_journey_stage_6.png" alt="Stage 6" loading="lazy" />
+            </div>
+            <div class="name">Stage 6</div>
+            <div class="path">hajj_journey/img_hajj_journey_stage_6.png</div>
+            <a href="./hajj_journey/img_hajj_journey_stage_6.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./hajj_journey/img_hajj_journey_stage_7.png" alt="Stage 7" loading="lazy" />
+            </div>
+            <div class="name">Stage 7</div>
+            <div class="path">hajj_journey/img_hajj_journey_stage_7.png</div>
+            <a href="./hajj_journey/img_hajj_journey_stage_7.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./hajj_journey/img_hajj_journey_stage_8.png" alt="Stage 8" loading="lazy" />
+            </div>
+            <div class="name">Stage 8</div>
+            <div class="path">hajj_journey/img_hajj_journey_stage_8.png</div>
+            <a href="./hajj_journey/img_hajj_journey_stage_8.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./hajj_journey/img_hajj_journey_stage_9.png" alt="Stage 9" loading="lazy" />
+            </div>
+            <div class="name">Stage 9</div>
+            <div class="path">hajj_journey/img_hajj_journey_stage_9.png</div>
+            <a href="./hajj_journey/img_hajj_journey_stage_9.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./hajj_journey/img_hajj_journey_stage_10.png" alt="Stage 10" loading="lazy" />
+            </div>
+            <div class="name">Stage 10</div>
+            <div class="path">hajj_journey/img_hajj_journey_stage_10.png</div>
+            <a href="./hajj_journey/img_hajj_journey_stage_10.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./hajj_journey/img_hajj_journey_stage_11.png" alt="Stage 11" loading="lazy" />
+            </div>
+            <div class="name">Stage 11</div>
+            <div class="path">hajj_journey/img_hajj_journey_stage_11.png</div>
+            <a href="./hajj_journey/img_hajj_journey_stage_11.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./hajj_journey/img_hajj_journey_stage_12.png" alt="Stage 12" loading="lazy" />
+            </div>
+            <div class="name">Stage 12</div>
+            <div class="path">hajj_journey/img_hajj_journey_stage_12.png</div>
+            <a href="./hajj_journey/img_hajj_journey_stage_12.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+      </div>
+    </div>
+
+    <!-- 4. HAJJ TOPICS (হজের বিষয়ভিত্তিক আইকনসমূহ) -->
+    <div class="section" id="hajj-topics">
+      <div class="section-header">
+        <h2 class="section-title">🕋 হজের বিষয়ভিত্তিক আইকনসমূহ (Hajj Topic Icons)</h2>
+        <span class="section-badge">31 টি ছবি</span>
+      </div>
+      <div class="grid">
+        
+          <div class="card">
+            <div class="card-img-wrap" style="height: 120px; padding: 12px;">
+              <img src="./hajj_topics/ic_hajj_1_hajj.png" alt="১. হজ পরিচিতি" loading="lazy" />
+            </div>
+            <div class="name">১. হজ পরিচিতি</div>
+            <div class="path">hajj_topics/ic_hajj_1_hajj.png</div>
+            <a href="./hajj_topics/ic_hajj_1_hajj.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap" style="height: 120px; padding: 12px;">
+              <img src="./hajj_topics/ic_hajj_2_significance.png" alt="২. তাৎপর্য ও গুরুত্ব" loading="lazy" />
+            </div>
+            <div class="name">২. তাৎপর্য ও গুরুত্ব</div>
+            <div class="path">hajj_topics/ic_hajj_2_significance.png</div>
+            <a href="./hajj_topics/ic_hajj_2_significance.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap" style="height: 120px; padding: 12px;">
+              <img src="./hajj_topics/ic_hajj_3_history.png" alt="৩. হজের ইতিহাস" loading="lazy" />
+            </div>
+            <div class="name">৩. হজের ইতিহাস</div>
+            <div class="path">hajj_topics/ic_hajj_3_history.png</div>
+            <a href="./hajj_topics/ic_hajj_3_history.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap" style="height: 120px; padding: 12px;">
+              <img src="./hajj_topics/ic_hajj_4_types.png" alt="৪. হজের প্রকারভেদ" loading="lazy" />
+            </div>
+            <div class="name">৪. হজের প্রকারভেদ</div>
+            <div class="path">hajj_topics/ic_hajj_4_types.png</div>
+            <a href="./hajj_topics/ic_hajj_4_types.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap" style="height: 120px; padding: 12px;">
+              <img src="./hajj_topics/ic_hajj_5_fard_wajib.png" alt="৫. ফরজ ও ওয়াজিব" loading="lazy" />
+            </div>
+            <div class="name">৫. ফরজ ও ওয়াজিব</div>
+            <div class="path">hajj_topics/ic_hajj_5_fard_wajib.png</div>
+            <a href="./hajj_topics/ic_hajj_5_fard_wajib.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap" style="height: 120px; padding: 12px;">
+              <img src="./hajj_topics/ic_hajj_6_preparation.png" alt="৬. হজের প্রস্তুতি" loading="lazy" />
+            </div>
+            <div class="name">৬. হজের প্রস্তুতি</div>
+            <div class="path">hajj_topics/ic_hajj_6_preparation.png</div>
+            <a href="./hajj_topics/ic_hajj_6_preparation.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap" style="height: 120px; padding: 12px;">
+              <img src="./hajj_topics/ic_hajj_7_holy_places.png" alt="৭. পবিত্র স্থানসমূহ" loading="lazy" />
+            </div>
+            <div class="name">৭. পবিত্র স্থানসমূহ</div>
+            <div class="path">hajj_topics/ic_hajj_7_holy_places.png</div>
+            <a href="./hajj_topics/ic_hajj_7_holy_places.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap" style="height: 120px; padding: 12px;">
+              <img src="./hajj_topics/ic_hajj_8_dua.png" alt="৮. হজের দোয়া" loading="lazy" />
+            </div>
+            <div class="name">৮. হজের দোয়া</div>
+            <div class="path">hajj_topics/ic_hajj_8_dua.png</div>
+            <a href="./hajj_topics/ic_hajj_8_dua.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap" style="height: 120px; padding: 12px;">
+              <img src="./hajj_topics/ic_hajj_9_acceptance.png" alt="৯. মাবরুর হজের লক্ষ্য" loading="lazy" />
+            </div>
+            <div class="name">৯. মাবরুর হজের লক্ষ্য</div>
+            <div class="path">hajj_topics/ic_hajj_9_acceptance.png</div>
+            <a href="./hajj_topics/ic_hajj_9_acceptance.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap" style="height: 120px; padding: 12px;">
+              <img src="./hajj_topics/ic_hajj_10_ihram.png" alt="১০. ইহরামের বিধান" loading="lazy" />
+            </div>
+            <div class="name">১০. ইহরামের বিধান</div>
+            <div class="path">hajj_topics/ic_hajj_10_ihram.png</div>
+            <a href="./hajj_topics/ic_hajj_10_ihram.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap" style="height: 120px; padding: 12px;">
+              <img src="./hajj_topics/ic_hajj_11_arafat.png" alt="১১. আরাফাতের ময়দান" loading="lazy" />
+            </div>
+            <div class="name">১১. আরাফাতের ময়দান</div>
+            <div class="path">hajj_topics/ic_hajj_11_arafat.png</div>
+            <a href="./hajj_topics/ic_hajj_11_arafat.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap" style="height: 120px; padding: 12px;">
+              <img src="./hajj_topics/ic_hajj_12_mina.png" alt="১২. মিনার দিনসমূহ" loading="lazy" />
+            </div>
+            <div class="name">১২. মিনার দিনসমূহ</div>
+            <div class="path">hajj_topics/ic_hajj_12_mina.png</div>
+            <a href="./hajj_topics/ic_hajj_12_mina.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap" style="height: 120px; padding: 12px;">
+              <img src="./hajj_topics/ic_hajj_13_muzdalifah.png" alt="১৩. মুযদালিফার রাত" loading="lazy" />
+            </div>
+            <div class="name">১৩. মুযদালিফার রাত</div>
+            <div class="path">hajj_topics/ic_hajj_13_muzdalifah.png</div>
+            <a href="./hajj_topics/ic_hajj_13_muzdalifah.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap" style="height: 120px; padding: 12px;">
+              <img src="./hajj_topics/ic_hajj_14_saee.png" alt="১৪. সাফা-মারওয়া সাঈ" loading="lazy" />
+            </div>
+            <div class="name">১৪. সাফা-মারওয়া সাঈ</div>
+            <div class="path">hajj_topics/ic_hajj_14_saee.png</div>
+            <a href="./hajj_topics/ic_hajj_14_saee.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap" style="height: 120px; padding: 12px;">
+              <img src="./hajj_topics/ic_hajj_15_tawaf.png" alt="১৫. বাইতুল্লাহ তাওয়াফ" loading="lazy" />
+            </div>
+            <div class="name">১৫. বাইতুল্লাহ তাওয়াফ</div>
+            <div class="path">hajj_topics/ic_hajj_15_tawaf.png</div>
+            <a href="./hajj_topics/ic_hajj_15_tawaf.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap" style="height: 120px; padding: 12px;">
+              <img src="./hajj_topics/ic_hajj_16_miqat.png" alt="১৬. মীক্বাত সীমানা" loading="lazy" />
+            </div>
+            <div class="name">১৬. মীক্বাত সীমানা</div>
+            <div class="path">hajj_topics/ic_hajj_16_miqat.png</div>
+            <a href="./hajj_topics/ic_hajj_16_miqat.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap" style="height: 120px; padding: 12px;">
+              <img src="./hajj_topics/ic_hajj_17_safa_marwa.png" alt="১৭. সাফা ও মারওয়া" loading="lazy" />
+            </div>
+            <div class="name">১৭. সাফা ও মারওয়া</div>
+            <div class="path">hajj_topics/ic_hajj_17_safa_marwa.png</div>
+            <a href="./hajj_topics/ic_hajj_17_safa_marwa.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap" style="height: 120px; padding: 12px;">
+              <img src="./hajj_topics/ic_hajj_18_dhul_hijjah.png" alt="১৮. জিলহজ মাসের ফযিলত" loading="lazy" />
+            </div>
+            <div class="name">১৮. জিলহজ মাসের ফযিলত</div>
+            <div class="path">hajj_topics/ic_hajj_18_dhul_hijjah.png</div>
+            <a href="./hajj_topics/ic_hajj_18_dhul_hijjah.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap" style="height: 120px; padding: 12px;">
+              <img src="./hajj_topics/ic_hajj_19_dhul_hijjah_amal.png" alt="১৯. জিলহজের আমল" loading="lazy" />
+            </div>
+            <div class="name">১৯. জিলহজের আমল</div>
+            <div class="path">hajj_topics/ic_hajj_19_dhul_hijjah_amal.png</div>
+            <a href="./hajj_topics/ic_hajj_19_dhul_hijjah_amal.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap" style="height: 120px; padding: 12px;">
+              <img src="./hajj_topics/ic_hajj_20_farewell.png" alt="২০. বিদায়ী তাওয়াফ" loading="lazy" />
+            </div>
+            <div class="name">২০. বিদায়ী তাওয়াফ</div>
+            <div class="path">hajj_topics/ic_hajj_20_farewell.png</div>
+            <a href="./hajj_topics/ic_hajj_20_farewell.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap" style="height: 120px; padding: 12px;">
+              <img src="./hajj_topics/ic_hajj_21_umrah.png" alt="২১. উমরাহ নির্দেশিকা" loading="lazy" />
+            </div>
+            <div class="name">২১. উমরাহ নির্দেশিকা</div>
+            <div class="path">hajj_topics/ic_hajj_21_umrah.png</div>
+            <a href="./hajj_topics/ic_hajj_21_umrah.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap" style="height: 120px; padding: 12px;">
+              <img src="./hajj_topics/ic_hajj_22_ayyame_tashreeq.png" alt="২২. আইয়ামে তাশরিক" loading="lazy" />
+            </div>
+            <div class="name">২২. আইয়ামে তাশরিক</div>
+            <div class="path">hajj_topics/ic_hajj_22_ayyame_tashreeq.png</div>
+            <a href="./hajj_topics/ic_hajj_22_ayyame_tashreeq.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap" style="height: 120px; padding: 12px;">
+              <img src="./hajj_topics/ic_hajj_23_ziyarat_madina.png" alt="২৩. মদিনা মনোয়ারা জিয়ারত" loading="lazy" />
+            </div>
+            <div class="name">২৩. মদিনা মনোয়ারা জিয়ারত</div>
+            <div class="path">hajj_topics/ic_hajj_23_ziyarat_madina.png</div>
+            <a href="./hajj_topics/ic_hajj_23_ziyarat_madina.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap" style="height: 120px; padding: 12px;">
+              <img src="./hajj_topics/ic_hajj_24_mistakes_kaffarah.png" alt="২৪. ভুলত্রুটি ও কাফফারা" loading="lazy" />
+            </div>
+            <div class="name">২৪. ভুলত্রুটি ও কাফফারা</div>
+            <div class="path">hajj_topics/ic_hajj_24_mistakes_kaffarah.png</div>
+            <a href="./hajj_topics/ic_hajj_24_mistakes_kaffarah.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap" style="height: 120px; padding: 12px;">
+              <img src="./hajj_topics/ic_hajj_25_necessary_info.png" alt="২৫. জরুরি নির্দেশনা" loading="lazy" />
+            </div>
+            <div class="name">২৫. জরুরি নির্দেশনা</div>
+            <div class="path">hajj_topics/ic_hajj_25_necessary_info.png</div>
+            <a href="./hajj_topics/ic_hajj_25_necessary_info.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap" style="height: 120px; padding: 12px;">
+              <img src="./hajj_topics/ic_hajj_26_guide.png" alt="২৬. পূর্ণাঙ্গ গাইডলাইন" loading="lazy" />
+            </div>
+            <div class="name">২৬. পূর্ণাঙ্গ গাইডলাইন</div>
+            <div class="path">hajj_topics/ic_hajj_26_guide.png</div>
+            <a href="./hajj_topics/ic_hajj_26_guide.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap" style="height: 120px; padding: 12px;">
+              <img src="./hajj_topics/ic_hajj_27_map.png" alt="২৭. ম্যাপ ও রুট" loading="lazy" />
+            </div>
+            <div class="name">২৭. ম্যাপ ও রুট</div>
+            <div class="path">hajj_topics/ic_hajj_27_map.png</div>
+            <a href="./hajj_topics/ic_hajj_27_map.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap" style="height: 120px; padding: 12px;">
+              <img src="./hajj_topics/ic_hajj_28_pre_registration.png" alt="২৮. প্রাক-নিবন্ধন তথ্য" loading="lazy" />
+            </div>
+            <div class="name">২৮. প্রাক-নিবন্ধন তথ্য</div>
+            <div class="path">hajj_topics/ic_hajj_28_pre_registration.png</div>
+            <a href="./hajj_topics/ic_hajj_28_pre_registration.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap" style="height: 120px; padding: 12px;">
+              <img src="./hajj_topics/ic_hajj_29_journey.png" alt="২৯. পবিত্র সফর" loading="lazy" />
+            </div>
+            <div class="name">২৯. পবিত্র সফর</div>
+            <div class="path">hajj_topics/ic_hajj_29_journey.png</div>
+            <a href="./hajj_topics/ic_hajj_29_journey.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap" style="height: 120px; padding: 12px;">
+              <img src="./hajj_topics/ic_hajj_30_religious_places.png" alt="৩০. ঐতিহাসিক স্থানসমূহ" loading="lazy" />
+            </div>
+            <div class="name">৩০. ঐতিহাসিক স্থানসমূহ</div>
+            <div class="path">hajj_topics/ic_hajj_30_religious_places.png</div>
+            <a href="./hajj_topics/ic_hajj_30_religious_places.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap" style="height: 120px; padding: 12px;">
+              <img src="./hajj_topics/ic_hajj_banner_kaaba.png" alt="ব্যানার: পবিত্র কাবা শরীফ" loading="lazy" />
+            </div>
+            <div class="name">ব্যানার: পবিত্র কাবা শরীফ</div>
+            <div class="path">hajj_topics/ic_hajj_banner_kaaba.png</div>
+            <a href="./hajj_topics/ic_hajj_banner_kaaba.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+      </div>
+    </div>
+
+    <!-- 5. SALAH WAQTS -->
+    <div class="section" id="salah-waqts">
+      <div class="section-header">
+        <h2 class="section-title">🌅 নামাজের ওয়াক্ত আইকন (Salah Waqt Icons)</h2>
+        <span class="section-badge">7 টি ছবি</span>
+      </div>
+      <div class="grid">
+        
+          <div class="card">
+            <div class="card-img-wrap" style="height: 120px; padding: 12px;">
+              <img src="./salah_waqts/ic_waqt_fajr.png" alt="ফজর (Fajr)" loading="lazy" />
+            </div>
+            <div class="name">ফজর (Fajr)</div>
+            <div class="path">salah_waqts/ic_waqt_fajr.png</div>
+            <a href="./salah_waqts/ic_waqt_fajr.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap" style="height: 120px; padding: 12px;">
+              <img src="./salah_waqts/ic_waqt_sunrise.png" alt="সূর্যোদয় (Sunrise)" loading="lazy" />
+            </div>
+            <div class="name">সূর্যোদয় (Sunrise)</div>
+            <div class="path">salah_waqts/ic_waqt_sunrise.png</div>
+            <a href="./salah_waqts/ic_waqt_sunrise.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap" style="height: 120px; padding: 12px;">
+              <img src="./salah_waqts/ic_waqt_dhuhr.png" alt="যোহর (Dhuhr)" loading="lazy" />
+            </div>
+            <div class="name">যোহর (Dhuhr)</div>
+            <div class="path">salah_waqts/ic_waqt_dhuhr.png</div>
+            <a href="./salah_waqts/ic_waqt_dhuhr.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap" style="height: 120px; padding: 12px;">
+              <img src="./salah_waqts/ic_waqt_asr.png" alt="আসর (Asr)" loading="lazy" />
+            </div>
+            <div class="name">আসর (Asr)</div>
+            <div class="path">salah_waqts/ic_waqt_asr.png</div>
+            <a href="./salah_waqts/ic_waqt_asr.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap" style="height: 120px; padding: 12px;">
+              <img src="./salah_waqts/ic_waqt_maghrib.png" alt="মাগরিব (Maghrib)" loading="lazy" />
+            </div>
+            <div class="name">মাগরিব (Maghrib)</div>
+            <div class="path">salah_waqts/ic_waqt_maghrib.png</div>
+            <a href="./salah_waqts/ic_waqt_maghrib.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap" style="height: 120px; padding: 12px;">
+              <img src="./salah_waqts/ic_waqt_isha.png" alt="এশা (Isha)" loading="lazy" />
+            </div>
+            <div class="name">এশা (Isha)</div>
+            <div class="path">salah_waqts/ic_waqt_isha.png</div>
+            <a href="./salah_waqts/ic_waqt_isha.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap" style="height: 120px; padding: 12px;">
+              <img src="./salah_waqts/ic_waqt_jummah.png" alt="জুমা (Jummah)" loading="lazy" />
+            </div>
+            <div class="name">জুমা (Jummah)</div>
+            <div class="path">salah_waqts/ic_waqt_jummah.png</div>
+            <a href="./salah_waqts/ic_waqt_jummah.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+      </div>
+    </div>
+
+    <!-- 6. MOSQUE & GALLERY -->
+    <div class="section" id="mosque-gallery">
+      <div class="section-header">
+        <h2 class="section-title">🖼️ ইসলামিক ওয়ালপেপার ও মসজিদ (Islamic Gallery & Mosque)</h2>
+        <span class="section-badge">25 টি ছবি</span>
+      </div>
+      <div class="grid">
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./mosque/img_mosque_silhouette_hd.png" alt="Mosque Silhouette HD" loading="lazy" />
+            </div>
+            <div class="name">Mosque Silhouette HD</div>
+            <div class="path">mosque/img_mosque_silhouette_hd.png</div>
+            <a href="./mosque/img_mosque_silhouette_hd.png" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./mosque/img_mosque_realistic.webp" alt="Mosque Realistic" loading="lazy" />
+            </div>
+            <div class="name">Mosque Realistic</div>
+            <div class="path">mosque/img_mosque_realistic.webp</div>
+            <a href="./mosque/img_mosque_realistic.webp" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./mosque/img_mosque_night_lights.webp" alt="Mosque Night Lights" loading="lazy" />
+            </div>
+            <div class="name">Mosque Night Lights</div>
+            <div class="path">mosque/img_mosque_night_lights.webp</div>
+            <a href="./mosque/img_mosque_night_lights.webp" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./gallery/gallery_opt_1790713198_cdd282.webp" alt="Islamic Wall 1" loading="lazy" />
+            </div>
+            <div class="name">Islamic Wall 1</div>
+            <div class="path">gallery/gallery_opt_1790713198_cdd282.webp</div>
+            <a href="./gallery/gallery_opt_1790713198_cdd282.webp" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./gallery/gallery_opt_1790713202_83f875.webp" alt="Islamic Wall 2" loading="lazy" />
+            </div>
+            <div class="name">Islamic Wall 2</div>
+            <div class="path">gallery/gallery_opt_1790713202_83f875.webp</div>
+            <a href="./gallery/gallery_opt_1790713202_83f875.webp" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./gallery/gallery_opt_1790713206_428fef.webp" alt="Islamic Wall 3" loading="lazy" />
+            </div>
+            <div class="name">Islamic Wall 3</div>
+            <div class="path">gallery/gallery_opt_1790713206_428fef.webp</div>
+            <a href="./gallery/gallery_opt_1790713206_428fef.webp" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./gallery/gallery_opt_1790713210_9c1380.webp" alt="Islamic Wall 4" loading="lazy" />
+            </div>
+            <div class="name">Islamic Wall 4</div>
+            <div class="path">gallery/gallery_opt_1790713210_9c1380.webp</div>
+            <a href="./gallery/gallery_opt_1790713210_9c1380.webp" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./gallery/gallery_opt_1790713227_bf68d9.webp" alt="Islamic Wall 5" loading="lazy" />
+            </div>
+            <div class="name">Islamic Wall 5</div>
+            <div class="path">gallery/gallery_opt_1790713227_bf68d9.webp</div>
+            <a href="./gallery/gallery_opt_1790713227_bf68d9.webp" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./gallery/gallery_opt_1790713469_64ce97.webp" alt="Islamic Wall 6" loading="lazy" />
+            </div>
+            <div class="name">Islamic Wall 6</div>
+            <div class="path">gallery/gallery_opt_1790713469_64ce97.webp</div>
+            <a href="./gallery/gallery_opt_1790713469_64ce97.webp" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./gallery/gallery_opt_1790713595_b69236.webp" alt="Islamic Wall 7" loading="lazy" />
+            </div>
+            <div class="name">Islamic Wall 7</div>
+            <div class="path">gallery/gallery_opt_1790713595_b69236.webp</div>
+            <a href="./gallery/gallery_opt_1790713595_b69236.webp" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./gallery/gallery_opt_1790713598_4c8998.webp" alt="Islamic Wall 8" loading="lazy" />
+            </div>
+            <div class="name">Islamic Wall 8</div>
+            <div class="path">gallery/gallery_opt_1790713598_4c8998.webp</div>
+            <a href="./gallery/gallery_opt_1790713598_4c8998.webp" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./gallery/gallery_opt_1790713605_1c6d19.webp" alt="Islamic Wall 9" loading="lazy" />
+            </div>
+            <div class="name">Islamic Wall 9</div>
+            <div class="path">gallery/gallery_opt_1790713605_1c6d19.webp</div>
+            <a href="./gallery/gallery_opt_1790713605_1c6d19.webp" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./gallery/gallery_opt_1790713608_d527c4.webp" alt="Islamic Wall 10" loading="lazy" />
+            </div>
+            <div class="name">Islamic Wall 10</div>
+            <div class="path">gallery/gallery_opt_1790713608_d527c4.webp</div>
+            <a href="./gallery/gallery_opt_1790713608_d527c4.webp" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./gallery/gallery_opt_1790713611_08c1bc.webp" alt="Islamic Wall 11" loading="lazy" />
+            </div>
+            <div class="name">Islamic Wall 11</div>
+            <div class="path">gallery/gallery_opt_1790713611_08c1bc.webp</div>
+            <a href="./gallery/gallery_opt_1790713611_08c1bc.webp" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./gallery/gallery_opt_1790713614_9df9c6.webp" alt="Islamic Wall 12" loading="lazy" />
+            </div>
+            <div class="name">Islamic Wall 12</div>
+            <div class="path">gallery/gallery_opt_1790713614_9df9c6.webp</div>
+            <a href="./gallery/gallery_opt_1790713614_9df9c6.webp" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./gallery/gallery_opt_1790713618_2c21ba.webp" alt="Islamic Wall 13" loading="lazy" />
+            </div>
+            <div class="name">Islamic Wall 13</div>
+            <div class="path">gallery/gallery_opt_1790713618_2c21ba.webp</div>
+            <a href="./gallery/gallery_opt_1790713618_2c21ba.webp" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./gallery/gallery_opt_1790713622_54d651.webp" alt="Islamic Wall 14" loading="lazy" />
+            </div>
+            <div class="name">Islamic Wall 14</div>
+            <div class="path">gallery/gallery_opt_1790713622_54d651.webp</div>
+            <a href="./gallery/gallery_opt_1790713622_54d651.webp" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./gallery/gallery_opt_1790713624_a62311.webp" alt="Islamic Wall 15" loading="lazy" />
+            </div>
+            <div class="name">Islamic Wall 15</div>
+            <div class="path">gallery/gallery_opt_1790713624_a62311.webp</div>
+            <a href="./gallery/gallery_opt_1790713624_a62311.webp" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./gallery/gallery_opt_1790713631_d71948.webp" alt="Islamic Wall 16" loading="lazy" />
+            </div>
+            <div class="name">Islamic Wall 16</div>
+            <div class="path">gallery/gallery_opt_1790713631_d71948.webp</div>
+            <a href="./gallery/gallery_opt_1790713631_d71948.webp" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./gallery/gallery_opt_1790713632_bb3958.webp" alt="Islamic Wall 17" loading="lazy" />
+            </div>
+            <div class="name">Islamic Wall 17</div>
+            <div class="path">gallery/gallery_opt_1790713632_bb3958.webp</div>
+            <a href="./gallery/gallery_opt_1790713632_bb3958.webp" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./gallery/gallery_opt_1790713635_7dc829.webp" alt="Islamic Wall 18" loading="lazy" />
+            </div>
+            <div class="name">Islamic Wall 18</div>
+            <div class="path">gallery/gallery_opt_1790713635_7dc829.webp</div>
+            <a href="./gallery/gallery_opt_1790713635_7dc829.webp" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./gallery/gallery_opt_1790713637_ff7037.webp" alt="Islamic Wall 19" loading="lazy" />
+            </div>
+            <div class="name">Islamic Wall 19</div>
+            <div class="path">gallery/gallery_opt_1790713637_ff7037.webp</div>
+            <a href="./gallery/gallery_opt_1790713637_ff7037.webp" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./gallery/gallery_opt_1790713642_1f8178.webp" alt="Islamic Wall 20" loading="lazy" />
+            </div>
+            <div class="name">Islamic Wall 20</div>
+            <div class="path">gallery/gallery_opt_1790713642_1f8178.webp</div>
+            <a href="./gallery/gallery_opt_1790713642_1f8178.webp" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./gallery/gallery_opt_1790715192_741686.webp" alt="Islamic Wall 21" loading="lazy" />
+            </div>
+            <div class="name">Islamic Wall 21</div>
+            <div class="path">gallery/gallery_opt_1790715192_741686.webp</div>
+            <a href="./gallery/gallery_opt_1790715192_741686.webp" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="./gallery/gallery_opt_1790717342_d36074.webp" alt="Islamic Wall 22" loading="lazy" />
+            </div>
+            <div class="name">Islamic Wall 22</div>
+            <div class="path">gallery/gallery_opt_1790717342_d36074.webp</div>
+            <a href="./gallery/gallery_opt_1790717342_d36074.webp" target="_blank" class="btn-link">Direct URL ↗</a>
+          </div>
+        
+      </div>
     </div>
 
     <footer>
-      <p>© 2026 DeenOne — দ্বীন ওয়ান ইসলামিক অ্যাপ্লিকেশন</p>
+      <p>© 2026 DeenOne — দ্বীন ওয়ান ইসলামিক অ্যাপ্লিকেশন | All CDN Assets Optimized</p>
     </footer>
   </div>
-
-  <script>
-    const hajjStages = 12;
-    const hajjContainer = document.getElementById('hajj-grid');
-    for (let i = 1; i <= hajjStages; i++) {
-      const src = `./hajj_journey/img_hajj_journey_stage_${i}.png`;
-      hajjContainer.innerHTML += `
-        <div class="card">
-          <img src="${src}" alt="Stage ${i}" loading="lazy" />
-          <div class="name">Stage ${i}</div>
-          <a href="${src}" target="_blank">View Direct URL ↗</a>
-        </div>
-      `;
-    }
-
-    const salahMale = 11;
-    const salahContainer = document.getElementById('salah-grid');
-    for (let i = 1; i <= salahMale; i++) {
-      const src = `./namaz_learning/male/img_salah_male_step_${i}.jpg`;
-      salahContainer.innerHTML += `
-        <div class="card">
-          <img src="${src}" alt="Male Step ${i}" loading="lazy" />
-          <div class="name">Male Step ${i}</div>
-          <a href="${src}" target="_blank">View Direct URL ↗</a>
-        </div>
-      `;
-    }
-
-    const topics = 30;
-    const topicsContainer = document.getElementById('topics-grid');
-    for (let i = 1; i <= 15; i++) {
-      const src = `./hajj_topics/ic_hajj_${i}_hajj.png`;
-      // Check if available or generic
-    }
-  </script>
 </body>
 </html>

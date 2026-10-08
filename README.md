@@ -1,27 +1,28 @@
-# DeenOne Images & Media Assets (দ্বীনওয়ান মিডিয়া রিসোর্স)
+# DeenOne Images CDN
 
-Official, production-ready asset repository for the **DeenOne** Islamic application ecosystem.
+Static image and asset CDN repository for the **DeenOne** Islamic Android Application.
 
-## 📂 Folder Structure
+## 📁 Directory Structure & URLs
 
-```
-deenone-images/
-├── hajj_journey/              # 12 stages of Hajj Journey with step visuals
-│   ├── img_hajj_journey_stage_1.png
-│   ├── ...
-│   └── img_hajj_journey_stage_12.png
-├── hajj_topics/               # 30 Hajj Topic & Guide icons (PNG/HD)
-│   ├── ic_hajj_1_hajj.png
-│   ├── ...
-│   └── ic_hajj_30_religious_places.png
-├── namaz_learning/            # Complete Namaz / Salah visual guide
-│   ├── male/                  # Male prayer postures (11 steps)
-│   └── female/                # Female prayer postures (10 steps)
-├── salah_waqts/               # HD prayer time period visuals (Fajr, Dhuhr, Asr, Maghrib, Isha, Jumuah)
-├── gallery/                   # High resolution Islamic wallpapers & art
-├── mosque/                    # High-definition Mosque silhouettes & backgrounds
-└── branding/                  # DeenOne App icons and branding graphics
-```
+### 🧕 Women's Salah Learning (মহিলাদের নামাজ শিক্ষা)
+- `namaz_learning/female/img_salah_female_step_1.jpg` to `img_salah_female_step_10.jpg`
 
----
-© 2026 DeenOne. All rights reserved.
+### 🕌 Men's Salah Learning (পুরুষদের নামাজ শিক্ষা)
+- `namaz_learning/male/img_salah_male_step_1.jpg` to `img_salah_male_step_11.jpg`
+
+### 🕋 Hajj Journey Stages (হজ যাত্রা ধাপসমূহ)
+- `hajj_journey/img_hajj_journey_stage_1.png` to `img_hajj_journey_stage_12.png`
+
+### 🕋 Hajj Topics (হজের বিষয়ভিত্তিক আইকনসমূহ)
+- `hajj_topics/ic_hajj_1_hajj.png` to `ic_hajj_30_religious_places.png`
+- `hajj_topics/ic_hajj_banner_kaaba.png`
+
+### 🌅 Salah Waqts (নামাজের ওয়াক্ত)
+- `salah_waqts/ic_waqt_fajr.png`, `ic_waqt_sunrise.png`, `ic_waqt_dhuhr.png`, `ic_waqt_asr.png`, `ic_waqt_maghrib.png`, `ic_waqt_isha.png`, `ic_waqt_jummah.png`
+
+### 🖼️ Gallery & Mosque
+- `gallery/gallery_opt_*.webp`
+- `mosque/img_mosque_silhouette_hd.png`, `img_mosque_realistic.webp`, `img_mosque_night_lights.webp`
+
+### 🏷️ Branding
+- `branding/deenone_icon.webp`
