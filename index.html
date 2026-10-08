@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DeenOne Asset CDN & Gallery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0B1313;
+      --card: #132222;
+      --border: #1C3333;
+      --teal: #10B981;
+      --text: #F1F5F9;
+      --text-muted: #94A3B8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Outfit', 'Hind Siliguri', sans-serif;
+      padding: 32px 16px;
+      line-height: 1.6;
+    }
+    .container { max-width: 1100px; margin: 0 auto; }
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--teal);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    h1 { font-size: 32px; font-weight: 700; margin-bottom: 8px; }
+    p.subtitle { color: var(--text-muted); font-size: 16px; }
+    .section { margin-bottom: 40px; }
+    .section h2 {
+      font-size: 20px;
+      margin-bottom: 16px;
+      color: var(--teal);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      text-align: center;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--teal);
+    }
+    .card img {
+      width: 100%;
+      height: 140px;
+      object-fit: contain;
+      border-radius: 8px;
+      background: rgba(0,0,0,0.2);
+    }
+    .card .name {
+      margin-top: 8px;
+      font-size: 12.5px;
+      color: var(--text-muted);
+      word-break: break-all;
+    }
+    .card a {
+      display: inline-block;
+      margin-top: 6px;
+      color: var(--teal);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <span class="badge">DeenOne Official CDN</span>
+      <h1>দ্বীনওয়ান মিডিয়া ও এসেট রিপোজিটরি</h1>
+      <p class="subtitle">Cloudflare Global Edge Network দ্বারা দ্রুতগতির ইমেজ সিডিএন</p>
+    </header>
+
+    <div class="section">
+      <h2>🕋 হজ যাত্রা (Hajj Journey Stages)</h2>
+      <div class="grid" id="hajj-grid"></div>
+    </div>
+
+    <div class="section">
+      <h2>🕌 সালাহ ও নামাজ শিক্ষা (Salah Learning Steps)</h2>
+      <div class="grid" id="salah-grid"></div>
+    </div>
+
+    <div class="section">
+      <h2>🕋 হজের বিষয়ভিত্তিক আইকনসমূহ (Hajj Topic Icons)</h2>
+      <div class="grid" id="topics-grid"></div>
+    </div>
+
+    <footer>
+      <p>© 2026 DeenOne — দ্বীন ওয়ান ইসলামিক অ্যাপ্লিকেশন</p>
+    </footer>
+  </div>
+
+  <script>
+    const hajjStages = 12;
+    const hajjContainer = document.getElementById('hajj-grid');
+    for (let i = 1; i <= hajjStages; i++) {
+      const src = `./hajj_journey/img_hajj_journey_stage_${i}.png`;
+      hajjContainer.innerHTML += `
+        <div class="card">
+          <img src="${src}" alt="Stage ${i}" loading="lazy" />
+          <div class="name">Stage ${i}</div>
+          <a href="${src}" target="_blank">View Direct URL ↗</a>
+        </div>
+      `;
+    }
+
+    const salahMale = 11;
+    const salahContainer = document.getElementById('salah-grid');
+    for (let i = 1; i <= salahMale; i++) {
+      const src = `./namaz_learning/male/img_salah_male_step_${i}.jpg`;
+      salahContainer.innerHTML += `
+        <div class="card">
+          <img src="${src}" alt="Male Step ${i}" loading="lazy" />
+          <div class="name">Male Step ${i}</div>
+          <a href="${src}" target="_blank">View Direct URL ↗</a>
+        </div>
+      `;
+    }
+
+    const topics = 30;
+    const topicsContainer = document.getElementById('topics-grid');
+    for (let i = 1; i <= 15; i++) {
+      const src = `./hajj_topics/ic_hajj_${i}_hajj.png`;
+      // Check if available or generic
+    }
+  </script>
+</body>
+</html>
